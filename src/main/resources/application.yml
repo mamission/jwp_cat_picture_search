@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: local
+
+  output:
+    ansi:
+      enabled: always
+
+logging:
+  level:
+    org:
+      hibernate:
+        type.descriptor.sql.BasicBinder: trace
+      springframework:
+        web: info
