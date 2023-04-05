@@ -1,4 +1,4 @@
-package toy.thecats;
+package com.pfk.thecats;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
