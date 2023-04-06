@@ -1,4 +1,4 @@
-package com.geonwoo.thecatapi.global.dataLoad;
+package com.geonwoo.thecatapi.feign.dataLoad;
 
 import java.util.List;
 
