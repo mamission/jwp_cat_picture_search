@@ -3,8 +3,6 @@ package com.example.catpicture.domain.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
@@ -55,5 +53,16 @@ public class CatPicture {
 
 	public BreedDetails breedDetails() {
 		return breedDetails;
+	}
+
+	@Override
+	public String toString() {
+		return "CatPicture{" +
+			"id='" + id + '\'' +
+			", url='" + url + '\'' +
+			", width=" + width +
+			", height=" + height +
+			", breedDetails=" + breedDetails +
+			"}\n";
 	}
 }

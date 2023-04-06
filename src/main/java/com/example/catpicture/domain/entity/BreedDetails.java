@@ -1,4 +1,4 @@
-package com.example.catpicture.domain;
+package com.example.catpicture.domain.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -34,5 +34,14 @@ public class BreedDetails {
 
 	public String origin() {
 		return origin;
+	}
+
+	@Override
+	public String toString() {
+		return "BreedDetails{" +
+			"name='" + name + '\'' +
+			", temperament='" + temperament + '\'' +
+			", origin='" + origin + '\'' +
+			'}';
 	}
 }
