@@ -30,10 +30,10 @@ public class CatPictureClientRunner implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) {
+		log.info("load data");
 		List<CatPicture> catPictures = loadData();
 
-		log.info("{}", catPictures);
-
+		log.info("save data");
 		catPictureRepository.saveAll(catPictures);
 	}
 
