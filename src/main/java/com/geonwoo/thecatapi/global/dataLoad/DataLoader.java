@@ -10,7 +10,6 @@ import com.geonwoo.thecatapi.domain.catImage.model.CatImage;
 import com.geonwoo.thecatapi.domain.catImage.repository.CatImageRepository;
 import com.geonwoo.thecatapi.feign.CatOpenFeign;
 import com.geonwoo.thecatapi.feign.converter.CatImageFeignConverter;
-import com.geonwoo.thecatapi.feign.response.IdResponse;
 import com.geonwoo.thecatapi.feign.response.ImageFeignResponse;
 
 import feign.RetryableException;
@@ -30,10 +29,9 @@ public class DataLoader implements CommandLineRunner {
 	public void run(String... args) {
 		try {
 			if (catImageRepository.count() < 50) {
-				List<IdResponse> idResponses = catOpenFeign.getRandomCatImages(100, 1);
-				for (IdResponse idResponse : idResponses) {
-					ImageFeignResponse response = catOpenFeign.getCatImageById(idResponse.id());
-					CatImage catImage = CatImageFeignConverter.toCatImage(response);
+				List<ImageFeignResponse> imageFeignResponses = catOpenFeign.getRandomCatImages(11, 1);
+				for (ImageFeignResponse imageFeignResponse : imageFeignResponses) {
+					CatImage catImage = CatImageFeignConverter.toCatImage(imageFeignResponse);
 					catImageRepository.save(catImage);
 				}
 			}
