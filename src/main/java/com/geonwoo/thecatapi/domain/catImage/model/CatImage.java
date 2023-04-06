@@ -1,4 +1,4 @@
-package com.geonwoo.thcatapi.domain.catImage.model;
+package com.geonwoo.thecatapi.domain.catImage.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
