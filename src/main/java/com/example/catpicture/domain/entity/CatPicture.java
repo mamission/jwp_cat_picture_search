@@ -1,4 +1,4 @@
-package com.example.catpicture.domain;
+package com.example.catpicture.domain.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -11,7 +11,6 @@ import jakarta.persistence.Id;
 public class CatPicture {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String id;
 
 	@Column(nullable = false)
