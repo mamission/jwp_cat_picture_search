@@ -37,7 +37,7 @@ public class CatDataGenerator implements CommandLineRunner {
 
 			List<CatImageSearchResponse> responses = catApiClient.searchCatImages();
 
-			List<Cat> cats = CatImageSearchResponse.from(responses);
+			List<Cat> cats = CatImageSearchResponse.mapToEntity(responses);
 			catRepository.saveAll(cats);
 		}
 	}

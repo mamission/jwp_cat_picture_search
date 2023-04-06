@@ -13,14 +13,14 @@ public record CatImageSearchResponse(
 	int height
 ) {
 
-	public static List<Cat> from(List<CatImageSearchResponse> responses) {
+	public static List<Cat> mapToEntity(List<CatImageSearchResponse> responses) {
 		return responses.stream()
 			.filter(CatImageSearchResponse::hasBreed)
-			.map(CatImageSearchResponse::from)
+			.map(CatImageSearchResponse::mapToEntity)
 			.toList();
 	}
 
-	public static Cat from(CatImageSearchResponse response) {
+	public static Cat mapToEntity(CatImageSearchResponse response) {
 		CatImage image = new CatImage(response.url, response.width, response.height);
 		Breed breed = response.getBreed();
 		return new Cat(breed.name, breed.temperament, breed.origin, image);
