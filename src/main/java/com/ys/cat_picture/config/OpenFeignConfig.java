@@ -6,7 +6,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ys.cat_picture.infra.client.FeignErrorDecoder;
+
 import feign.Logger;
+import feign.codec.ErrorDecoder;
 
 @EnableFeignClients("com.ys.cat_picture")
 @Configuration
@@ -25,4 +29,10 @@ public class OpenFeignConfig {
 			registrar.registerFormatters(registry);
 		};
 	}
+
+	@Bean
+	public ErrorDecoder errorDecoder(ObjectMapper objectMapper) {
+		return new FeignErrorDecoder(objectMapper);
+	}
+
 }

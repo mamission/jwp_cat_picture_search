@@ -1,4 +1,4 @@
-package com.ys.cat_picture.cat_breed.repository;
+package com.ys.cat_picture.cat_image.repository;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -7,38 +7,61 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.jdbc.Sql;
 
 import com.ys.cat_picture.cat_breed.domain.CatBreed;
 import com.ys.cat_picture.cat_breed.domain.Weight;
+import com.ys.cat_picture.cat_image.domain.CatImage;
 import com.ys.cat_picture.support.RepositoryTest;
-
+@Sql(scripts = {"/sql/breed_sample.sql", "/sql/cat_image_sample.sql"})
 @RepositoryTest
-class CatBreedRepositoryTest {
+class CatImageRepositoryTest {
 
 	@Autowired
-	private CatBreedRepository catBreedRepository;
+	private CatImageRepository catImageRepository;
 
-	@DisplayName("existsData - 존재하지 않으면 false를 반환한다.")
+	@DisplayName("이미 존재하는 데이터는 저장하지 않는다.")
 	@Test
-	void existsData_false() {
-		assertThat(catBreedRepository.existsData()).isFalse();
+	void saveAllIgnore_existsDataNotInsert() {
+	    //given
+		List<CatImage> catImages = List.of(
+			new CatImage("36v", "https://cdn2.thecatapi.com/images/36v.jpg", 540, 720,
+				existsBreeds.get(0)),
+			new CatImage("24u", "https://cdn2.thecatapi.com/images/24u.png", 564, 400,
+				existsBreeds.get(1)));
+		int exitingCatImageDataSize = catImageRepository.findAll().size();
+
+		//when
+		catImageRepository.saveAllIgnore(catImages);
+
+		//then
+		assertThat(catImageRepository.findAll()).hasSize(exitingCatImageDataSize);
 	}
 
-	@DisplayName("existsData - 존재하면 true를 반환한다.")
+	@DisplayName("Breed 가 이미 존재하면 외래키를 맺는다.")
 	@Test
-	void existsData_true() {
+	void saveAllIgnoreTest() {
 		//given
-		catBreedRepository.saveAll(breeds);
+		List<CatImage> catImages = List.of(
+			new CatImage("aa", "https://cdn2.thecatapi.com/images/36v.jpg", 540, 720,
+				existsBreeds.get(0)),
+			new CatImage("bb", "https://cdn2.thecatapi.com/images/24u.png", 564, 400,
+				existsBreeds.get(1)));
 
-		//when & then
-		assertThat(catBreedRepository.existsData()).isTrue();
+		//when
+		List<CatImage> saveCatImages = catImageRepository.saveAllIgnore(catImages);
+
+		//then
+		assertThat(saveCatImages)
+			.extracting(it -> it.getBreed().getId())
+			.isNotNull();
 	}
 
-	private List<CatBreed> breeds =
+	private List<CatBreed> existsBreeds =
 		List.of(
 			CatBreed.builder()
 				.weight(new Weight("6 - 12", "3 - 7"))
-				.externalId("beng")
+				.externalId("bamb")
 				.name("Bengal")
 				.cfaUrl("http://cfa.org/Breeds/BreedsAB/Bengal.aspx")
 				.vetstreetUrl("http://www.vetstreet.com/cats/bengal")
@@ -78,7 +101,7 @@ class CatBreedRepositoryTest {
 				.build(),
 			CatBreed.builder()
 				.weight(new Weight("8 - 13", "4 - 6"))
-				.externalId("cymr")
+				.externalId("bali")
 				.name("Cymric")
 				.vetstreetUrl("http://www.vetstreet.com/cats/cymric")
 				.temperament("Gentle, Loyal, Intelligent, Playful")
@@ -115,4 +138,5 @@ class CatBreedRepositoryTest {
 				.build()
 
 		);
+
 }

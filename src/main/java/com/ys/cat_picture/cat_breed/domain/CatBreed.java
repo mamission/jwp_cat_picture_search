@@ -149,6 +149,7 @@ public class CatBreed {
 		int strangerFriendly, int vocalisation, int bidability, int experimental, int hairless, int natural, int rare,
 		int rex,
 		int suppressedTail, int shortLegs, String wikipediaUrl, int hypoallergenic, String referenceImageId) {
+		this.externalId = externalId;
 		this.experimental = experimental;
 		this.weight = weight;
 		this.name = name;
