@@ -201,4 +201,6 @@ Temporary Items
 # iCloud generated files
 *.icloud
 
+/src/main/resources/application_api_key.yml
+
 # End of https://www.toptal.com/developers/gitignore/api/java,macos,intellij

@@ -1,0 +1,10 @@
+cat:
+  openapi:
+    key: ${api.key}
+    url: https://api.thecatapi.com/v1/images
+logging:
+  level:
+    com.cat.picture_search.api: DEBUG
+spring:
+  config:
+    import: application_api_key.yml
