@@ -13,16 +13,20 @@ import lombok.NoArgsConstructor;
 public class CatImageConverter {
 
 	public static List<CatImage> convert(List<CatOneResponse> responses) {
-		return responses.stream().map(it -> {
-			CatOneResponse.BreedResponse breedResponse = null;
+		return responses.stream()
+			.map(CatImageConverter::convert)
+			.toList();
+	}
 
-			if (!it.breeds().isEmpty()) {
-				breedResponse = it.breeds().get(0);
-			}
+	public static CatImage convert(CatOneResponse catOneResponse) {
+		CatOneResponse.BreedResponse breedResponse = null;
 
-			return new CatImage(it.id(), it.url(), it.width(), it.height(),
-				CatBreedConverter.convert(breedResponse));
-		}).toList();
+		if (!catOneResponse.breeds().isEmpty()) {
+			breedResponse = catOneResponse.breeds().get(0);
+		}
+
+		return new CatImage(catOneResponse.id(), catOneResponse.url(), catOneResponse.width(), catOneResponse.height(),
+			CatBreedConverter.convert(breedResponse));
 	}
 
 }
