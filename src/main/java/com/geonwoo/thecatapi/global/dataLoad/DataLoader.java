@@ -30,7 +30,7 @@ public class DataLoader implements CommandLineRunner {
 	public void run(String... args) {
 		try {
 			if (catImageRepository.count() < 50) {
-				List<IdResponse> idResponses = catOpenFeign.getRandomCatImages(11, 1);
+				List<IdResponse> idResponses = catOpenFeign.getRandomCatImages(100, 1);
 				for (IdResponse idResponse : idResponses) {
 					ImageFeignResponse response = catOpenFeign.getCatImageById(idResponse.id());
 					CatImage catImage = CatImageFeignConverter.toCatImage(response);
