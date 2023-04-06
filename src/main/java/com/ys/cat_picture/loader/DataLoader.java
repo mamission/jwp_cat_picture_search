@@ -31,7 +31,7 @@ public class DataLoader implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		if (!catBreedRepository.existsData()) {
+		if (Boolean.FALSE.equals(catBreedRepository.existsData())) {
 			log.info("not exists data");
 			List<BreedResponse> breeds = catApiClient.getBreeds();
 			log.info("run init");
