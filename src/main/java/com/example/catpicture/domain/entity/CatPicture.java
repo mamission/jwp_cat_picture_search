@@ -3,12 +3,17 @@ package com.example.catpicture.domain.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class CatPicture {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long sequence;
+
 	private String id;
 
 	@Column(nullable = false)
@@ -33,6 +38,10 @@ public class CatPicture {
 		this.width = width;
 		this.height = height;
 		this.breedDetails = breedDetails;
+	}
+
+	public Long sequence() {
+		return sequence;
 	}
 
 	public String id() {
@@ -64,5 +73,9 @@ public class CatPicture {
 			", height=" + height +
 			", breedDetails=" + breedDetails +
 			"}\n";
+	}
+
+	public String getName() {
+		return breedDetails.name();
 	}
 }
