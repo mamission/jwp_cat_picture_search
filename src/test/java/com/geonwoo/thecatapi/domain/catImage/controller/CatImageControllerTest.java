@@ -47,7 +47,7 @@ class CatImageControllerTest {
 	@DisplayName("[성공] 파라미터로 넘긴 고양이 품종과 일치하는 고양이 사진을 반환한다.")
 	void getImagesByBreed() throws Exception {
 
-		String breedName = "Munchkin";
+		String breedName = "Australian Mist";
 
 		mockMvc.perform(get("/cats/search/{q}", breedName))
 			.andExpect(status().isOk())

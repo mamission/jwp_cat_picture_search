@@ -8,8 +8,8 @@ public class CatImageConverter {
 	public static ImageResponse toImageResponse(CatImage catImage) {
 		return ImageResponse.create(
 			catImage.getId(),
-			catImage.getName(),
-			catImage.getUrl()
+			catImage.getUrl(),
+			catImage.getName()
 		);
 	}
 

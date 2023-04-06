@@ -15,3 +15,4 @@ spring:
 
 the-cat-api:
   url: https://api.thecatapi.com
+  key: ${API_KEY}
