@@ -1,5 +1,7 @@
 package com.ys.cat_picture.cat_breed.convert;
 
+import java.util.Optional;
+
 import com.ys.cat_picture.cat_breed.domain.CatBreed;
 import com.ys.cat_picture.cat_breed.domain.Weight;
 import com.ys.cat_picture.infra.client.response.CatOneResponse;
@@ -10,12 +12,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CatBreedConverter {
 
-	public static CatBreed convert(CatOneResponse.BreedResponse response) {
+	public static Optional<CatBreed> convert(CatOneResponse.BreedResponse response) {
 		if (response == null) {
-			return null;
+			return Optional.empty();
 		}
 
-		return CatBreed.builder()
+		return Optional.of(CatBreed.builder()
 			.weight(new Weight(response.weight().imperial(), response.weight().metric()))
 			.externalId(response.id())
 			.name(response.name())
@@ -41,6 +43,6 @@ public class CatBreedConverter {
 			.vocalisation(response.vocalisation())
 			.hypoallergenic(response.hypoallergenic())
 			.referenceImageId(response.referenceImageId())
-			.build();
+			.build());
 	}
 }

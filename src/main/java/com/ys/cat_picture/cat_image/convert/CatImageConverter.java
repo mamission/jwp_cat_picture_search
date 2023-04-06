@@ -26,7 +26,8 @@ public class CatImageConverter {
 		}
 
 		return new CatImage(catOneResponse.id(), catOneResponse.url(), catOneResponse.width(), catOneResponse.height(),
-			CatBreedConverter.convert(breedResponse));
+			CatBreedConverter.convert(breedResponse).orElse(null)
+		);
 	}
 
 }
