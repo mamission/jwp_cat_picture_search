@@ -1,4 +1,4 @@
-package com.geonwoo.thecatapi.domain.dto.response;
+package com.geonwoo.thecatapi.domain.catImage.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

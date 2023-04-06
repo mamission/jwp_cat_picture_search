@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.geonwoo.thecatapi.domain.catImage.model.CatImage;
-import com.geonwoo.thecatapi.domain.repository.CatImageRepository;
+import com.geonwoo.thecatapi.domain.catImage.repository.CatImageRepository;
 import com.geonwoo.thecatapi.feign.CatOpenFeign;
 import com.geonwoo.thecatapi.feign.converter.CatImageFeignConverter;
 import com.geonwoo.thecatapi.feign.response.IdResponse;
