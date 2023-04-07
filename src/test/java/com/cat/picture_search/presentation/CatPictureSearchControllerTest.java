@@ -94,7 +94,7 @@ class CatPictureSearchControllerTest {
 					fieldWithPath("data.temperament").type(JsonFieldType.STRING)
 						.description("사진 속 고양이의 품종 정보 중 기질에 해당합니다. 없으면 빈 문자열(\"\")로 출력됩니다."),
 					fieldWithPath("data.origin").type(JsonFieldType.STRING)
-						.description("사진 속 고양이의 기원 지역입니다. 없으면 빈 문자열(\"\")로 출력됩니다.")
+						.description("사진 속 고양이의 품종 정보 중 기원 지역입니다. 없으면 빈 문자열(\"\")로 출력됩니다.")
 				)));
 	}
 
