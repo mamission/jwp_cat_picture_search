@@ -39,5 +39,4 @@ public class CatImageController {
 		return ResponseEntity.ok(new ApiResponses<>(catImageService.searchByQuery(query)));
 	}
 
-
 }

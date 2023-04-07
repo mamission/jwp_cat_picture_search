@@ -19,9 +19,9 @@ repositories {
     mavenCentral()
 }
 
-val snippetsDir by extra {file("build/generated-snippets")}
+val snippetsDir by extra { file("build/generated-snippets") }
 extra["springCloudVersion"] = "2022.0.2"
-
+val asciidoctorExt by configurations.creating
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-validation")
@@ -35,8 +35,10 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
-
+    testImplementation("com.github.javafaker:javafaker:1.0.2")
     testImplementation("com.navercorp.fixturemonkey:fixture-monkey-starter:0.5.2")
+    testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
+    asciidoctorExt("org.springframework.restdocs:spring-restdocs-asciidoctor")
 }
 
 dependencyManagement {
@@ -46,14 +48,28 @@ dependencyManagement {
 }
 
 tasks.withType<Test> {
+    outputs.dir(snippetsDir)
     useJUnitPlatform()
 }
 
-tasks.test {
-    outputs.dir(snippetsDir)
-}
+tasks {
+    test {
+        outputs.dir(snippetsDir)
+    }
 
-tasks.asciidoctor {
-    inputs.dir(snippetsDir)
-    dependsOn(tasks.test)
+    asciidoctor {
+        inputs.dir(snippetsDir)
+        configurations(asciidoctorExt.name)
+        dependsOn(test)
+        doLast {
+            copy {
+                from("build/docs/asciidoc")
+                into("src/main/resources/static/docs")
+            }
+        }
+    }
+
+    build {
+        dependsOn(asciidoctor)
+    }
 }

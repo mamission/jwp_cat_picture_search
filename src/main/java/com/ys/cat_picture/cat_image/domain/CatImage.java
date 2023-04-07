@@ -15,6 +15,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -39,6 +40,7 @@ public class CatImage {
 	@JoinColumn(name = "cat_breed_id")
 	private CatBreed breed;
 
+	@Builder
 	public CatImage(String externalId, String url, int width, int height, CatBreed breed) {
 		this.externalId = externalId;
 		this.url = url;

@@ -23,4 +23,15 @@ public class CatBreedConverter {
 			.origin(response.origin())
 			.build());
 	}
+
+	public static Optional<CatBreed> convert(CatOneResponse catOneResponse) {
+		CatOneResponse.BreedResponse breedResponse = null;
+
+		if (catOneResponse.breeds() != null && !catOneResponse.breeds().isEmpty()) {
+			breedResponse = catOneResponse.breeds().get(0);
+		}
+
+		return convert(breedResponse);
+	}
+
 }

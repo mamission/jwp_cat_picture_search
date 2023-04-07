@@ -4,7 +4,6 @@ import static com.ys.cat_picture.cat_image.convert.CatImageConverter.*;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -12,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ys.cat_picture.cat_breed.convert.CatBreedConverter;
 import com.ys.cat_picture.cat_breed.domain.CatBreed;
 import com.ys.cat_picture.cat_breed.repository.CatBreedRepository;
 import com.ys.cat_picture.cat_image.domain.CatImage;
@@ -36,7 +36,6 @@ public class CatImageService {
 
 	@Transactional
 	public List<CatImageResponse> getRandomImages() {
-
 		List<CatOneResponse> responses = catApiClient.getRandomImages(MAX_RANDOM_IMAGE_COUNT, true);
 
 		List<CatImage> catImages = convert(responses);
@@ -56,11 +55,23 @@ public class CatImageService {
 		CatImage findCatImage = catImageRepository.findByExternalId(catId)
 			.orElseGet(() ->
 				{
-					CatImage catImage = convert(catApiClient.getImageById(catId));
-					if (Objects.nonNull(catImage.getBreed())) {
-						catBreedRepository.save(catImage.getBreed());
+					CatOneResponse catOneResponse = catApiClient.getImageById(catId);
+
+					CatImage.CatImageBuilder catImageBuilder = CatImage.builder()
+						.externalId(catOneResponse.id())
+						.url(catOneResponse.url())
+						.width(catOneResponse.width())
+						.height(catOneResponse.height());
+
+					Optional<CatBreed> catBreedOptional = CatBreedConverter.convert(catOneResponse);
+
+					if (catBreedOptional.isPresent()) {
+						CatBreed catBreed = catBreedRepository.findByExternalId(catBreedOptional.get().getExternalId())
+							.orElseGet(() -> catBreedRepository.save(catBreedOptional.get()));
+						catImageBuilder.breed(catBreed);
 					}
-					return catImageRepository.save(catImage);
+
+					return catImageRepository.save(catImageBuilder.build());
 				}
 			);
 
@@ -68,11 +79,12 @@ public class CatImageService {
 	}
 
 	@Transactional
-	public List<CatImageResponse> searchByQuery(String query) {
-		List<CatImage> catImages = catImageRepository.findAllByBreedNameWithBreed(query, PageRequest.of(0, DEFAULT_QUERY_COUNT));
+	public List<CatImageResponse> searchByQuery(String breedName) {
+		List<CatImage> catImages = catImageRepository.findAllByBreedNameWithBreed(breedName,
+			PageRequest.of(0, DEFAULT_QUERY_COUNT));
 
 		if (catImages.isEmpty()) {
-			Optional<CatBreed> catBreedOptional = catBreedRepository.findByName(query);
+			Optional<CatBreed> catBreedOptional = catBreedRepository.findByName(breedName);
 
 			if (catBreedOptional.isEmpty()) {
 				return Collections.emptyList();

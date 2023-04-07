@@ -1,0 +1,55 @@
+
+= 고양이 사진 검색사이트 API Document
+
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:sectlinks:
+:docinfo: shared-head
+
+== GET /cats/:catId
+고양이 id로 고양이 이미지 API
+
+=== Http request
+include::{snippets}/cat-image-controller-test/get-by-id/http-request.adoc[]
+
+=== Path Param
+include::{snippets}/cat-image-controller-test/get-by-id/path-parameters.adoc[]
+
+=== Http Response
+include::{snippets}/cat-image-controller-test/get-by-id/http-response.adoc[]
+
+=== Response fields
+include::{snippets}/cat-image-controller-test/get-by-id/response-fields.adoc[]
+
+
+== GET /cats/search?q
+고양이 품종으로 고양이 이미지 API
+
+=== Http request
+include::{snippets}/cat-image-controller-test/search-by-query/http-request.adoc[]
+
+=== Request Param
+include::{snippets}/cat-image-controller-test/search-by-query/query-parameters.adoc[]
+
+=== Http Response
+include::{snippets}/cat-image-controller-test/search-by-query/http-response.adoc[]
+
+=== Response fields
+include::{snippets}/cat-image-controller-test/search-by-query/response-fields.adoc[]
+
+
+
+== GET /cats/random50
+랜덤한 50개의 고양이 이미지 API
+
+=== Http Request
+include::{snippets}/cat-image-controller-test/random50-images/http-request.adoc[]
+
+=== Http Response
+include::{snippets}/cat-image-controller-test/random50-images/http-response.adoc[]
+
+=== Response Fields
+include::{snippets}/cat-image-controller-test/random50-images/response-fields.adoc[]

@@ -63,6 +63,7 @@ class CatImageServiceTest {
 
 		//then
 		assertThat(randomImages).hasSize(50);
+		verify(catApiClient).getRandomImages(50, true);
 	}
 
 	@DisplayName("Id로 데이터베이스에 존재하는 이미지를 가져온다")

@@ -37,7 +37,6 @@ public class CatImageConverter {
 		);
 	}
 
-
 	public static CatImage convert(CatOneResponse catOneResponse) {
 		CatOneResponse.BreedResponse breedResponse = null;
 
