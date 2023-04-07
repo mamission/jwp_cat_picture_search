@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cat.picture_search.domain.dto.CatPictureDetailRes;
@@ -32,9 +33,10 @@ public class CatPictureSearchController {
 	}
 
 	@GetMapping("/search")
-	public ResponseEntity<Response<List<CatPictureSimpleRes>>> getSearch() {
-
-		List<CatPictureSimpleRes> catPictureRes = catPictureSearchService.search();
+	public ResponseEntity<Response<List<CatPictureSimpleRes>>> getSearch(
+		@RequestParam String q
+	) {
+		List<CatPictureSimpleRes> catPictureRes = catPictureSearchService.search(q);
 
 		return ResponseEntity.ok(Response.of(catPictureRes));
 	}

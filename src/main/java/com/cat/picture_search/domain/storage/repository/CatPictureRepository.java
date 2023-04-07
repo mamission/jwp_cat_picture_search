@@ -18,4 +18,13 @@ public interface CatPictureRepository extends JpaRepository<CatPicture, String> 
 		+ "limit :limit ",
 		nativeQuery = true)
 	List<CatPicture> getRandomCatPictures(@Param(value = "limit") int limit);
+
+	@Query(
+		"select new com.cat.picture_search.domain.storage.repository.CatPictureSearchSimple(c.id, c.url, c.breeds.name) "
+			+ "from CatPicture c "
+			+ "where c.breeds.name like %:keyword% or "
+			+ "c.breeds.origin like %:keyword% or "
+			+ "c.breeds.temperament like %:keyword% "
+	)
+	List<CatPictureSearchSimple> findCatPicturesByKeyWord(@Param(value = "keyword") String keyword);
 }

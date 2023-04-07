@@ -32,8 +32,11 @@ public class CatPictureSearchService {
 			.toList();
 	}
 
-	public List<CatPictureSimpleRes> search() {
-		return null;
+	public List<CatPictureSimpleRes> search(String q) {
+		return catPictureRepository.findCatPicturesByKeyWord(q)
+			.stream()
+			.map(CatPictureSimpleRes::of)
+			.toList();
 	}
 
 	public CatPictureDetailRes getOne(String id) {
