@@ -202,5 +202,6 @@ Temporary Items
 *.icloud
 
 /src/main/resources/application_secrets.yml
+/src/docs/asciidoc/index.adoc
 
 # End of https://www.toptal.com/developers/gitignore/api/java,macos,intellij
