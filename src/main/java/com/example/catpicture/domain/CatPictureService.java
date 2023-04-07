@@ -26,7 +26,8 @@ public class CatPictureService {
 		for (int i = 0; i < numberOfPictures; i++) {
 			long sequence = random.nextLong(count) + 1;
 			CatPicture catPicture = catPictureRepository.findById(sequence)
-				.orElseThrow(() -> new CatPictureNotFoundException(sequence));
+				.orElseThrow(() -> new CatPictureNotFoundException(
+					"Cannot found cat picture. [picture seq]: %d".formatted(sequence)));
 			response.addCatResponse(catPicture);
 		}
 
