@@ -24,7 +24,7 @@ public class CatPictureApi {
 		return catPictureService.getRandom(50);
 	}
 
-	@GetMapping("/cats/search")
+	@GetMapping("/search")
 	public GetCatsByBreedResponse getCatsByBreed(@RequestParam String q) {
 		return catPictureService.getByBreed(q);
 	}
