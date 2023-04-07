@@ -14,7 +14,7 @@ public class CatPicture {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long sequence;
 
-	private String id;
+	private String photoId;
 
 	@Column(nullable = false)
 	private String url;
@@ -32,8 +32,8 @@ public class CatPicture {
 	protected CatPicture() {
 	}
 
-	public CatPicture(String id, String url, int width, int height, BreedDetails breedDetails) {
-		this.id = id;
+	public CatPicture(String photoId, String url, int width, int height, BreedDetails breedDetails) {
+		this.photoId = photoId;
 		this.url = url;
 		this.width = width;
 		this.height = height;
@@ -44,8 +44,8 @@ public class CatPicture {
 		return sequence;
 	}
 
-	public String id() {
-		return id;
+	public String photoId() {
+		return photoId;
 	}
 
 	public String url() {
@@ -67,7 +67,7 @@ public class CatPicture {
 	@Override
 	public String toString() {
 		return "CatPicture{" +
-			"id='" + id + '\'' +
+			"id='" + photoId + '\'' +
 			", url='" + url + '\'' +
 			", width=" + width +
 			", height=" + height +
@@ -77,5 +77,13 @@ public class CatPicture {
 
 	public String getName() {
 		return breedDetails.name();
+	}
+
+	public String getTemperament() {
+		return breedDetails.temperament();
+	}
+
+	public String getOrigin() {
+		return breedDetails.origin();
 	}
 }

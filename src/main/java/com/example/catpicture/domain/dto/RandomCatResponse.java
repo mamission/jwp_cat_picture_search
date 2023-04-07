@@ -9,6 +9,6 @@ public record RandomCatResponse(
 ) {
 
 	public RandomCatResponse(CatPicture catPicture) {
-		this(catPicture.id(), catPicture.url(), catPicture.getName());
+		this(catPicture.photoId(), catPicture.url(), catPicture.getName());
 	}
 }

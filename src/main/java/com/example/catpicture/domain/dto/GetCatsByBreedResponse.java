@@ -21,7 +21,7 @@ public record GetCatsByBreedResponse(
 		String name
 	) {
 		public GetCatByBreedResponse(CatPicture catPicture) {
-			this(catPicture.id(), catPicture.url(), catPicture.getName());
+			this(catPicture.photoId(), catPicture.url(), catPicture.getName());
 		}
 	}
 }
