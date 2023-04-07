@@ -4,6 +4,7 @@ import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.*;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
+import static org.springframework.restdocs.request.RequestDocumentation.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -63,6 +64,9 @@ class CatPictureSearchControllerTest {
 			.andDo(document("search-pictures-by-keyword",
 				preprocessRequest(prettyPrint()),
 				preprocessResponse(prettyPrint()),
+				queryParameters(
+					parameterWithName("q").description("검색하고자 하는 키워드")
+				),
 				responseFields(
 					fieldWithPath("data[]").type(JsonFieldType.ARRAY).description("반환되는 고양이 사진 목록입니다."),
 					fieldWithPath("data[].id").type(JsonFieldType.STRING).description("고양이 사진 데이터 id, 유니크한 값입니다."),
@@ -83,6 +87,9 @@ class CatPictureSearchControllerTest {
 			.andDo(document("get-one-picture",
 				preprocessRequest(prettyPrint()),
 				preprocessResponse(prettyPrint()),
+				pathParameters(
+					parameterWithName("id").description("찾고자 하는 데이터의 id 값입니다.")
+				),
 				responseFields(
 					fieldWithPath("data").type(JsonFieldType.OBJECT).description("반환되는 고양이 사진 객체입니다."),
 					fieldWithPath("data.name").type(JsonFieldType.STRING)

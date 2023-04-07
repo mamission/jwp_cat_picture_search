@@ -4,7 +4,7 @@ cat:
     url: https://api.thecatapi.com/v1/images
 logging:
   level:
-    com.cat.picture_search.api: DEBUG
+    com.cat.picture_search.global.catApi: DEBUG
 
 spring:
   config:

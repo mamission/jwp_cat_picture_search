@@ -22,7 +22,7 @@ repositories {
 
 ext {
 	set('springCloudVersion', "2022.0.1")
-	set('snippetsDir', file("build/generated-snippets"))
+	set('snippetsDir', file('build/generated-snippets'))
 }
 
 dependencyManagement {
@@ -44,26 +44,26 @@ dependencies {
 }
 
 tasks.named('test') {
-	outputs.dir snippetsDir
 	useJUnitPlatform()
+	outputs.dir snippetsDir
 }
 
-tasks.named('asciidoctor') {
-	dependsOn test
-	configurations 'asciidoctorExtensions'
+asciidoctor {
 	inputs.dir snippetsDir
+	configurations 'asciidoctorExtensions'
+
+	dependsOn test
 }
 
-asciidoctor.doFirst {
-	delete file('src/main/resources/static')
-}
-
-task copyDocument(type: Copy) {
+bootJar {
 	dependsOn asciidoctor
-	from file("build/docs/asciidoc")
-	into file("src/main/resources/static")
+
+	copy {
+		from asciidoctor.outputDir
+		into "src/main/resources/static/docs"
+	}
 }
 
 build {
-	dependsOn copyDocument
+	dependsOn bootJar
 }
