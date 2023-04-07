@@ -42,7 +42,7 @@ public class CatPictureSearchController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Response<CatPictureDetailRes>> getOne(@PathVariable String id) {
+	public ResponseEntity<Response<CatPictureDetailRes>> getOne(@PathVariable("id") String id) {
 
 		CatPictureDetailRes catPictureDetailRes = catPictureSearchService.getOne(id);
 

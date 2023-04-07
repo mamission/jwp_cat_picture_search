@@ -18,12 +18,12 @@ public interface CatPictureOpenFeignController {
 	@GetMapping("/search")
 	List<CatPictureDetail> getRandom(
 		@RequestHeader(name = API_KEY_HEADER_NAME) String apiKey,
-		@RequestParam int limit
+		@RequestParam("limit") int limit
 	);
 
 	@GetMapping("/{id}")
 	CatPictureDetail getOne(
 		@RequestHeader(name = API_KEY_HEADER_NAME) String apiKey,
-		@PathVariable String id
+		@PathVariable("id") String id
 	);
 }
