@@ -1,9 +1,6 @@
 package com.cat.picture_search.domain.dto;
 
-import java.util.stream.Collectors;
-
-import com.cat.picture_search.domain.dto.api.BreedsDetail;
-import com.cat.picture_search.domain.dto.api.CatPictureSimple;
+import com.cat.picture_search.domain.storage.data.CatPicture;
 
 public record CatPictureSimpleRes(
 	String id,
@@ -11,16 +8,11 @@ public record CatPictureSimpleRes(
 	String name
 ) {
 
-	private static final String DELIMITER = ",";
-
-	public static CatPictureSimpleRes of(CatPictureSimple catPictureSimple) {
+	public static CatPictureSimpleRes of(CatPicture catPicture) {
 		return new CatPictureSimpleRes(
-			catPictureSimple.id(),
-			catPictureSimple.url(),
-			catPictureSimple.breeds()
-				.stream()
-				.map(BreedsDetail::name)
-				.collect(Collectors.joining(DELIMITER))
+			catPicture.getId(),
+			catPicture.getUrl(),
+			catPicture.getBreeds().getName()
 		);
 	}
 }

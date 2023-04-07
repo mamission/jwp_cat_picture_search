@@ -9,15 +9,14 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cat.picture_search.domain.dto.api.CatPictureDetail;
-import com.cat.picture_search.domain.dto.api.CatPictureSimple;
 
 @FeignClient(name = "CatePictureOpenFeign", url = "${cat.openapi.url}")
-public interface CatPictureOpenFeign {
+public interface CatPictureOpenFeignController {
 
 	String API_KEY_HEADER_NAME = "x-api-key";
 
 	@GetMapping("/search")
-	List<CatPictureSimple> getRandom(
+	List<CatPictureDetail> getRandom(
 		@RequestHeader(name = API_KEY_HEADER_NAME) String apiKey,
 		@RequestParam int limit
 	);
