@@ -1,6 +1,7 @@
 package com.example.catpicture.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.example.catpicture.domain.dto.GetCatByIdResponse;
 import com.example.catpicture.domain.dto.GetCatsByBreedResponse;
 import com.example.catpicture.domain.dto.GetRandomCatsResponse;
+import com.example.catpicture.domain.dto.RandomCatResponse;
 import com.example.catpicture.domain.entity.CatPicture;
 
 @Service
@@ -22,17 +24,17 @@ public class CatPictureService {
 	public GetRandomCatsResponse getRandom(int numberOfPictures) {
 		long count = catPictureRepository.count();
 
-		GetRandomCatsResponse response = new GetRandomCatsResponse(new ArrayList<>());
+		List<RandomCatResponse> data = new ArrayList<>();
 		Random random = new Random();
 		for (int i = 0; i < numberOfPictures; i++) {
 			long sequence = random.nextLong(count) + 1;
 			CatPicture catPicture = catPictureRepository.findById(sequence)
 				.orElseThrow(() -> new CatPictureNotFoundException(
 					"Cannot found cat picture. [picture seq]: %d".formatted(sequence)));
-			response.addCatResponse(catPicture);
+			data.add(new RandomCatResponse(catPicture));
 		}
 
-		return response;
+		return new GetRandomCatsResponse(data);
 	}
 
 	public GetCatsByBreedResponse getByBreed(String q) {
