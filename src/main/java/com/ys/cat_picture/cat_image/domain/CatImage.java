@@ -35,7 +35,7 @@ public class CatImage {
 	private Integer width;
 	private Integer height;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
 	@JoinColumn(name = "cat_breed_id")
 	private CatBreed breed;
 

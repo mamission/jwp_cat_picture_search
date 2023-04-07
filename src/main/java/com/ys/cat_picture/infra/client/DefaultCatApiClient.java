@@ -30,4 +30,9 @@ public class DefaultCatApiClient implements CatApiClient {
 		return catApiFeignClient.getImageById(catImageId);
 	}
 
+	@Override
+	public List<CatOneResponse> findAllByBreedId(String breedId, int limit) {
+		return catApiFeignClient.getImageByBreedId(breedId, limit);
+	}
+
 }

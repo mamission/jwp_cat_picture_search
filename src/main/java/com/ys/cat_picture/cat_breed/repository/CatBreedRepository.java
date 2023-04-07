@@ -15,4 +15,6 @@ public interface CatBreedRepository extends JpaRepository<CatBreed, String> {
 
 	Optional<CatBreed> findByExternalId(@Param("externalId")String externalId);
 
+	Optional<CatBreed> findByName(String name);
+
 }

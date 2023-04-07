@@ -1,5 +1,7 @@
 package com.ys.cat_picture.common.error;
 
+import static org.springframework.http.HttpStatus.*;
+
 import java.time.LocalDateTime;
 
 import org.springframework.http.HttpStatus;
@@ -31,6 +33,15 @@ public class GlobalExceptionHandler {
 		logError(e, request.getRequestURI());
 		return ResponseEntity.badRequest()
 			.body(new ErrorResponse(HttpStatus.BAD_REQUEST.value(),
+				e.getMessage(), LocalDateTime.now(), request.getRequestURI()));
+	}
+
+	@ExceptionHandler(ResourceNotFoundException.class)
+	public ResponseEntity<ErrorResponse> handleResourceNotFoundException(
+		HttpServletRequest request, ResourceNotFoundException e
+	) {
+		return ResponseEntity.status(NOT_FOUND.value())
+			.body(new ErrorResponse(NOT_FOUND.value(),
 				e.getMessage(), LocalDateTime.now(), request.getRequestURI()));
 	}
 

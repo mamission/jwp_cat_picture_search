@@ -21,6 +21,23 @@ public class CatImageConverter {
 			.toList();
 	}
 
+	public static List<CatImage> convert(List<CatOneResponse> responses, CatBreed catBreed) {
+		return responses.stream()
+			.map(it -> convert(it, catBreed))
+			.toList();
+	}
+
+	public static CatImage convert(CatOneResponse catOneResponse, CatBreed catBreed) {
+
+		return new CatImage(catOneResponse.id(),
+			catOneResponse.url(),
+			catOneResponse.width(),
+			catOneResponse.height(),
+			catBreed
+		);
+	}
+
+
 	public static CatImage convert(CatOneResponse catOneResponse) {
 		CatOneResponse.BreedResponse breedResponse = null;
 

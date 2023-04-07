@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ys.cat_picture.cat_image.dto.CatImageDetailResponse;
@@ -31,5 +32,12 @@ public class CatImageController {
 		@PathVariable String catId) {
 		return ResponseEntity.ok(new ApiResponse<>(catImageService.getById(catId)));
 	}
+
+	@GetMapping("/search")
+	public ResponseEntity<ApiResponses<CatImageResponse>> searchByQuery(
+		@RequestParam("q") String query) {
+		return ResponseEntity.ok(new ApiResponses<>(catImageService.searchByQuery(query)));
+	}
+
 
 }

@@ -28,4 +28,8 @@ public interface CatApiFeignClient {
 	@GetMapping(value = "/v1/images/{imageId}")
 	CatOneResponse getImageById(@PathVariable String imageId);
 
+	@GetMapping(value = "/v1/images")
+	List<CatOneResponse> getImageByBreedId(
+		@RequestParam("breed_ids") String breedId, @RequestParam("limit") int limit);
+
 }

@@ -1,11 +1,9 @@
 package com.ys.cat_picture.cat_image.service;
 
-import static com.ys.cat_picture.cat_image.convert.CatImageConverter.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.BDDMockito.*;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,10 +15,8 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 
-import net.jqwik.api.Arbitraries;
-
+import com.ys.cat_picture.cat_breed.domain.CatBreed;
 import com.ys.cat_picture.cat_breed.repository.CatBreedRepository;
-import com.ys.cat_picture.cat_image.convert.CatImageConverter;
 import com.ys.cat_picture.cat_image.domain.CatImage;
 import com.ys.cat_picture.cat_image.dto.CatImageDetailResponse;
 import com.ys.cat_picture.cat_image.dto.CatImageResponse;
@@ -115,6 +111,77 @@ class CatImageServiceTest {
 		boolean present = catImageRepository.findByExternalId(catImageId).isPresent();
 		assertThat(present).isTrue();
 		verify(catApiClient).getImageById(catImageId);
+	}
+
+	@DisplayName("데이터베이스에서 해당 query의 이미지를 가져온다")
+	@Test
+	void searchByQuery_findDb() {
+		FixtureMonkey catImageMonkey = MonkeyUtils.byFieldReflection(true);
+		FixtureMonkey catBreedMonkey = MonkeyUtils.byFieldReflection(true);
+
+		String bengal = "bengal";
+		CatBreed catBreed = catBreedMonkey.giveMeBuilder(CatBreed.class)
+			.setNull("id")
+			.set("externalId", "beng")
+			.set("name", bengal)
+			.sample();
+
+		catBreedRepository.save(catBreed);
+
+		List<CatImage> catImages = catImageMonkey.giveMeBuilder(CatImage.class)
+			.setNull("id")
+			.set("breed", catBreed)
+			.sampleList(10);
+
+		catImageRepository.saveAll(catImages);
+
+		//when
+		List<CatImageResponse> imageResponses = catImageService.searchByQuery(bengal);
+
+		//then
+		assertThat(imageResponses).hasSize(10)
+			.extracting(CatImageResponse::name).contains(bengal);
+	}
+
+	@DisplayName("데이터베이스에서 해당 query의 이미지가 존재하지 않으면 api를 호출하여 가져온다.")
+	@Test
+	void searchByQuery_findApi() {
+		FixtureMonkey catImageMonkey = MonkeyUtils.byConstructorProperties(true);
+		FixtureMonkey catBreedMonkey = MonkeyUtils.byFieldReflection(true);
+		FixtureMonkey breedResponseMonkey = MonkeyUtils.byConstructorProperties(false);
+
+		String bengal = "bengal";
+		CatBreed catBreed = catBreedMonkey.giveMeBuilder(CatBreed.class)
+			.setNull("id")
+			.set("externalId", "beng")
+			.set("name", bengal)
+			.sample();
+
+		catBreedRepository.save(catBreed);
+
+		List<CatOneResponse.BreedResponse> breedResponses = breedResponseMonkey.giveMeBuilder(
+				CatOneResponse.BreedResponse.class)
+			.set("id", "beng")
+			.set("name", catBreed.getName())
+			.set("origin", "korean")
+			.set("temperament", "Affectionate, Active, Gentle, Social")
+			.sampleList(1);
+
+		List<CatOneResponse> responses = catImageMonkey.giveMeBuilder(CatOneResponse.class)
+			.set("breeds", breedResponses)
+			.sampleList(10);
+
+
+		given(catApiClient.findAllByBreedId(catBreed.getExternalId(), 10))
+			.willReturn(responses);
+
+		//when
+		List<CatImageResponse> imageResponses = catImageService.searchByQuery(bengal);
+
+		//then
+		assertThat(imageResponses).hasSize(10)
+			.extracting(CatImageResponse::name).contains(bengal);
+		verify(catApiClient).findAllByBreedId(catBreed.getExternalId(), 10);
 	}
 
 }
