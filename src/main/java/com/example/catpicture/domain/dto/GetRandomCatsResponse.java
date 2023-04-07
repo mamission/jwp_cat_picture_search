@@ -5,9 +5,9 @@ import java.util.List;
 import com.example.catpicture.domain.entity.CatPicture;
 
 public record GetRandomCatsResponse(
-	List<RandomCatResponse> randomCatResponses
+	List<RandomCatResponse> data
 ) {
 	public void addCatResponse(CatPicture catPicture) {
-		randomCatResponses.add(new RandomCatResponse(catPicture));
+		data.add(new RandomCatResponse(catPicture));
 	}
 }

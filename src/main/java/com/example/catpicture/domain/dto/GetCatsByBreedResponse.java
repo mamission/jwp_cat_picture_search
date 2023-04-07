@@ -5,7 +5,7 @@ import java.util.List;
 import com.example.catpicture.domain.entity.CatPicture;
 
 public record GetCatsByBreedResponse(
-	List<GetCatByBreedResponse> catsByBreed
+	List<GetCatByBreedResponse> data
 ) {
 	public static GetCatsByBreedResponse from(List<CatPicture> catPictures) {
 		return new GetCatsByBreedResponse(
