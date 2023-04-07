@@ -5,6 +5,7 @@ import java.util.Random;
 
 import org.springframework.stereotype.Service;
 
+import com.example.catpicture.domain.dto.GetCatsByBreedResponse;
 import com.example.catpicture.domain.dto.GetRandomCatsResponse;
 import com.example.catpicture.domain.entity.CatPicture;
 
@@ -30,5 +31,9 @@ public class CatPictureService {
 		}
 
 		return response;
+	}
+
+	public GetCatsByBreedResponse getByBreed(String q) {
+		return GetCatsByBreedResponse.from(catPictureRepository.findAllByName(q));
 	}
 }
