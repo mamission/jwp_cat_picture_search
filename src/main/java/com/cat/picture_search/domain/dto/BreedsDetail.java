@@ -1,4 +1,4 @@
-package com.cat.picture_search.domain.dto.api;
+package com.cat.picture_search.domain.dto;
 
 public record BreedsDetail(
 	String name,

@@ -1,4 +1,4 @@
-package com.cat.picture_search.api;
+package com.cat.picture_search.global.catApi;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.cat.picture_search.domain.dto.api.CatPictureDetail;
+import com.cat.picture_search.domain.dto.CatPictureDetail;
 
 @FeignClient(name = "CatePictureOpenFeign", url = "${cat.openapi.url}")
 public interface CatPictureOpenFeignController {

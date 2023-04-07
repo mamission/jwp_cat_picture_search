@@ -1,4 +1,4 @@
-package com.cat.picture_search.domain.storage.repository;
+package com.cat.picture_search.domain.repository;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.cat.picture_search.domain.repository.data.CatPictureSearchSimple;
 import com.cat.picture_search.domain.storage.data.CatPicture;
 
 public interface CatPictureRepository extends JpaRepository<CatPicture, String> {
@@ -20,7 +21,7 @@ public interface CatPictureRepository extends JpaRepository<CatPicture, String> 
 	List<CatPicture> getRandomCatPictures(@Param(value = "limit") int limit);
 
 	@Query(
-		"select new com.cat.picture_search.domain.storage.repository.CatPictureSearchSimple(c.id, c.url, c.breeds.name) "
+		"select new com.cat.picture_search.domain.repository.data.CatPictureSearchSimple(c.id, c.url, c.breeds.name) "
 			+ "from CatPicture c "
 			+ "where c.breeds.name like %:keyword% or "
 			+ "c.breeds.origin like %:keyword% or "

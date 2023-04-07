@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.cat.picture_search.api.CatPictureOpenFeignService;
-import com.cat.picture_search.domain.dto.CatPictureDetailRes;
-import com.cat.picture_search.domain.dto.CatPictureSimpleRes;
+import com.cat.picture_search.domain.dto.res.CatPictureDetailRes;
+import com.cat.picture_search.domain.dto.res.CatPictureSimpleRes;
+import com.cat.picture_search.domain.repository.CatPictureRepository;
 import com.cat.picture_search.domain.storage.data.CatPicture;
-import com.cat.picture_search.domain.storage.repository.CatPictureRepository;
+import com.cat.picture_search.global.catApi.CatPictureOpenFeignService;
 
 @Service
 public class CatPictureSearchService {

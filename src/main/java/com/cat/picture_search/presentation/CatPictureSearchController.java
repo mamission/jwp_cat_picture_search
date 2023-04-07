@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cat.picture_search.domain.dto.CatPictureDetailRes;
-import com.cat.picture_search.domain.dto.CatPictureSimpleRes;
-import com.cat.picture_search.domain.dto.Response;
+import com.cat.picture_search.domain.dto.res.CatPictureDetailRes;
+import com.cat.picture_search.domain.dto.res.CatPictureSimpleRes;
+import com.cat.picture_search.domain.dto.res.Response;
 import com.cat.picture_search.domain.service.CatPictureSearchService;
 
 @RestController

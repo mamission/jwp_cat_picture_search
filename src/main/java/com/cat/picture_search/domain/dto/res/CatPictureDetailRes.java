@@ -1,4 +1,4 @@
-package com.cat.picture_search.domain.dto;
+package com.cat.picture_search.domain.dto.res;
 
 import com.cat.picture_search.domain.storage.data.CatPicture;
 

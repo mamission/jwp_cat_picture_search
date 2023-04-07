@@ -18,8 +18,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cat.picture_search.domain.repository.CatPictureRepository;
 import com.cat.picture_search.domain.storage.data.CatPicture;
-import com.cat.picture_search.domain.storage.repository.CatPictureRepository;
 
 @ActiveProfiles("test")
 @AutoConfigureRestDocs

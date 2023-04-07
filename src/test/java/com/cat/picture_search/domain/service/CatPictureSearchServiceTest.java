@@ -12,10 +12,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cat.picture_search.domain.dto.CatPictureDetailRes;
-import com.cat.picture_search.domain.dto.CatPictureSimpleRes;
+import com.cat.picture_search.domain.dto.res.CatPictureDetailRes;
+import com.cat.picture_search.domain.dto.res.CatPictureSimpleRes;
+import com.cat.picture_search.domain.repository.CatPictureRepository;
 import com.cat.picture_search.domain.storage.data.CatPicture;
-import com.cat.picture_search.domain.storage.repository.CatPictureRepository;
 
 @ActiveProfiles("test")
 @SpringBootTest

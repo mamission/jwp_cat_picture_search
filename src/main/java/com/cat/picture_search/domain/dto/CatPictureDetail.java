@@ -1,4 +1,4 @@
-package com.cat.picture_search.domain.dto.api;
+package com.cat.picture_search.domain.dto;
 
 import java.util.ArrayList;
 import java.util.List;

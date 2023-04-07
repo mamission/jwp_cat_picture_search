@@ -1,4 +1,4 @@
-package com.cat.picture_search.api;
+package com.cat.picture_search.global.catApi;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
