@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/cps?rewriteBatchedStatements=true&init
+    username: root
+    password: root1234!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:sql/schema.sql
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+the-cat:
+  base_url: https://api.thecatapi.com/v1
+  api-key: live_3M7DmNzaOhiefyKsMo4TFax7gLMo6daE4WoVjJ21ppMEZFnKXm50VxvRHvDKtnfd
