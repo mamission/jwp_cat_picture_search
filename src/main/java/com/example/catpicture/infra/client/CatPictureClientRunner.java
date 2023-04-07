@@ -1,6 +1,5 @@
 package com.example.catpicture.infra.client;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -30,21 +29,9 @@ public class CatPictureClientRunner implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) {
-		log.info("load data");
-		List<CatPicture> catPictures = loadData();
+		List<CatPicture> catPictures = ClientPictureResponse.toEntity(catPictureLoader.loadPictures());
 
 		log.info("save data");
 		catPictureRepository.saveAll(catPictures);
-	}
-
-	private List<CatPicture> loadData() {
-		return catPictureLoader.loadBreeds()
-			.stream()
-			.map(breedDetails -> ClientPictureResponse.toEntity(
-				catPictureLoader.loadPictures(breedDetails),
-				breedDetails
-			))
-			.flatMap(Collection::stream)
-			.toList();
 	}
 }

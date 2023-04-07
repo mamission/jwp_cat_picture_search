@@ -9,15 +9,14 @@ import org.springframework.stereotype.Component;
 
 import com.example.catpicture.infra.client.CatClient;
 import com.example.catpicture.infra.client.CatPictureLoader;
-import com.example.catpicture.infra.dto.ClientBreedResponse;
 import com.example.catpicture.infra.dto.ClientPictureResponse;
 
 @Component
 public class CatPictureFeignLoader implements CatPictureLoader {
 
-	public static final int PICTURE_DEFAULT_LIMIT = 10;
-	public static final int BREED_DEFAULT_LIMIT = 30;
+	public static final int PICTURE_DEFAULT_LIMIT = 50;
 	private static final Logger log = LoggerFactory.getLogger(CatPictureFeignLoader.class);
+	public static final int BREED_INCLUDE = 1;
 
 	private final CatClient catClient;
 	private final String apiKey;
@@ -31,19 +30,14 @@ public class CatPictureFeignLoader implements CatPictureLoader {
 	}
 
 	@Override
-	public List<ClientPictureResponse> loadPictures(ClientBreedResponse breedDetails) {
+	public List<ClientPictureResponse> loadPictures() {
+		log.info("load pictures. Picture Default Limit: {}, Has Breeds Option: {}", PICTURE_DEFAULT_LIMIT,
+			BREED_INCLUDE);
 
 		return catClient.searchPictures(
 			apiKey,
 			PICTURE_DEFAULT_LIMIT,
-			breedDetails.id()
+			BREED_INCLUDE
 		);
-	}
-
-	@Override
-	public List<ClientBreedResponse> loadBreeds() {
-		log.info("load breeds");
-
-		return catClient.searchBreeds(BREED_DEFAULT_LIMIT);
 	}
 }
