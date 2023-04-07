@@ -25,4 +25,9 @@ public class DefaultCatApiClient implements CatApiClient {
 		return catApiFeignClient.getRandomImages(limit, hasBreeds ? 1 : 0);
 	}
 
+	@Override
+	public CatOneResponse getImageById(String catImageId) {
+		return catApiFeignClient.getImageById(catImageId);
+	}
+
 }

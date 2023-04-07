@@ -15,4 +15,5 @@ public interface CatApiClient {
 
 	List<CatOneResponse> getRandomImages(int limit, boolean hasBreeds);
 
+	CatOneResponse getImageById(String catId);
 }

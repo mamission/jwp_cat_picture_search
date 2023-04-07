@@ -1,7 +1,10 @@
 package com.ys.cat_picture.cat_image.domain;
 
+import java.util.Objects;
+
 import com.ys.cat_picture.cat_breed.domain.CatBreed;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -28,10 +31,11 @@ public class CatImage {
 	@Column(unique = true)
 	private String externalId;
 	private String url;
-	private int width;
-	private int height;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	private Integer width;
+	private Integer height;
+
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "cat_breed_id")
 	private CatBreed breed;
 
@@ -42,4 +46,22 @@ public class CatImage {
 		this.height = height;
 		this.breed = breed;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		CatImage catImage = (CatImage)o;
+		return Objects.equals(id, catImage.id) && Objects.equals(externalId, catImage.externalId)
+			&& Objects.equals(url, catImage.url) && Objects.equals(width, catImage.width)
+			&& Objects.equals(height, catImage.height) && Objects.equals(breed, catImage.breed);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, externalId, url, width, height, breed);
+	}
+
 }

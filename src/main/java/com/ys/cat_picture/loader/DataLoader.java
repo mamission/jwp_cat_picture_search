@@ -53,7 +53,7 @@ public class DataLoader implements CommandLineRunner {
 				@Override
 				public void setValues(PreparedStatement ps, int i) throws SQLException {
 					BreedResponse breedResponse = breeds.get(i);
-					ps.setInt(1, breedResponse.experimental());
+					ps.setString(1, breedResponse.id());
 					ps.setString(2, breedResponse.name());
 					ps.setString(3, breedResponse.temperament());
 					ps.setString(4, breedResponse.origin());
