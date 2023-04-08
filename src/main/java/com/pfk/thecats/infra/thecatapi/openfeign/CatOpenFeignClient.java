@@ -1,4 +1,4 @@
-package com.pfk.thecats.infra.thecatapi;
+package com.pfk.thecats.infra.thecatapi.openfeign;
 
 import java.util.List;
 

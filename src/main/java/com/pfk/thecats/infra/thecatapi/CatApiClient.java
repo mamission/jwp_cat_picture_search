@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.pfk.thecats.infra.thecatapi.dto.CatImageSearchResponse;
+import com.pfk.thecats.infra.thecatapi.openfeign.CatOpenFeignClient;
 
 @Component
 public class CatApiClient {
