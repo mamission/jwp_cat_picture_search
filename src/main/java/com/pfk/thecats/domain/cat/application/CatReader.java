@@ -13,9 +13,13 @@ public class CatReader {
 		this.catRepository = catRepository;
 	}
 
-	public boolean anyCatExists() {
-		return catRepository
-			.findFirstByOrderByIdAsc()
-			.isPresent();
+	public CatQueryResponse getOneBySourceId(String sourceId) {
+		Cat findCat = findOneBySourceId(sourceId);
+		return CatQueryResponse.from(findCat);
+	}
+
+	private Cat findOneBySourceId(String sourceId) {
+		return catRepository.findCatBySourceId(sourceId)
+			.orElseThrow(() -> new CatNotFoundException("Cannot find Cat for sourceId=%s".formatted(sourceId)));
 	}
 }
