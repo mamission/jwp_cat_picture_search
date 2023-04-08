@@ -3,26 +3,12 @@ spring:
     database: mysql
     hibernate:
       ddl-auto: update
-    show-sql: true
     properties:
       hibernate:
         format_sql: true
-        use_sql_comments: true
-
-  h2:
-    console:
-      enabled: true
 
   datasource:
     url: jdbc:mysql://localhost:3306/cats
     username: ${MYSQL_USER}
     password: ${MYSQL_PW}
     driver-class-name: com.mysql.cj.jdbc.Driver
-
-the-cat-api:
-  key: ${CAT_API_KEY}
-  url: https://api.thecatapi.com
-
-logging:
-  level:
-    com.pfk.thecats.infra.thecatapi: DEBUG

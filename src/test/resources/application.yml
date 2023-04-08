@@ -1,14 +1,19 @@
 spring:
-  profiles:
-    active: local
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
 
-  output:
-    ansi:
-      enabled: always
+  datasource:
+    driver-class-name: org.h2.Driver
 
   h2:
     console:
       enabled: true
+
+  output:
+    ansi:
+      enabled: always
 
 logging:
   level:
@@ -18,8 +23,8 @@ logging:
         type.descriptor.sql.BasicBinder: trace
       springframework:
         web: info
-    com.pfk.thecats.infra.thecatapi: DEBUG
 
 the-cat-api:
-  key: ${CAT_API_KEY}
-  url: https://api.thecatapi.com
+  key: test
+  url: test-url
+
