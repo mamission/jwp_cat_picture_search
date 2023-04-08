@@ -1,0 +1,22 @@
+:hardbreaks:
+:doctype: book
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:sectlinks:
+
+= Cat Picture
+
+== Cat Image
+
+=== 랜덤한 50개의 고양이 사진 목록 조회
+
+operation::cat-image-get-random-50[snippets='http-request,response-body,response-fields']
+
+=== 품종으로 고양이 사진 목록 조회
+
+operation::cat-image-get-all-by-breed-name[snippets='http-request,request-parameters,response-body,response-fields']
+
+=== 고양이 사진 상세 조회
+
+operation::cat-get-one-by-source-id[snippets='http-request,path-parameters,response-body,response-fields']
