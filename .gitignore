@@ -207,3 +207,5 @@ gradle-app.setting
 
 # gradle
 gradle
+
+src/main/resources/jsons
