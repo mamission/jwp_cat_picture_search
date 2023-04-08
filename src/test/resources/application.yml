@@ -1,0 +1,30 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+
+  datasource:
+    driver-class-name: org.h2.Driver
+
+  h2:
+    console:
+      enabled: true
+
+  output:
+    ansi:
+      enabled: always
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+        type.descriptor.sql.BasicBinder: trace
+      springframework:
+        web: info
+
+the-cat-api:
+  key: test
+  url: test-url
+

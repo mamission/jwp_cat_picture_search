@@ -1,0 +1,25 @@
+spring:
+  profiles:
+    active: local
+
+  output:
+    ansi:
+      enabled: always
+
+  h2:
+    console:
+      enabled: true
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+        type.descriptor.sql.BasicBinder: trace
+      springframework:
+        web: info
+    com.pfk.thecats.infra.thecatapi: DEBUG
+
+the-cat-api:
+  key: ${CAT_API_KEY}
+  url: https://api.thecatapi.com
