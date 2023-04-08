@@ -2,8 +2,8 @@ package com.pfk.thecats.infra.thecatapi.dto;
 
 import java.util.List;
 
-import com.pfk.thecats.domain.cat.entity.Cat;
-import com.pfk.thecats.domain.cat.entity.CatImage;
+import com.pfk.thecats.domain.cat.domain.Cat;
+import com.pfk.thecats.domain.cat.domain.CatBreed;
 
 public record CatImageSearchResponse(
 	List<Breed> breeds,
@@ -21,17 +21,15 @@ public record CatImageSearchResponse(
 	}
 
 	public static Cat mapToEntity(CatImageSearchResponse response) {
-		CatImage image = new CatImage(response.url, response.width, response.height);
-		Breed breed = response.getBreed();
-		return new Cat(breed.name, breed.temperament, breed.origin, image);
+		return null;
 	}
 
-	private Breed getBreed() {
+	public Breed getBreed() {
 		return this.breeds.get(0);
 	}
 
 	private boolean hasBreed() {
-		return this.breeds.size() != 0;
+		return !this.breeds.isEmpty();
 	}
 
 	public record Breed(
@@ -39,5 +37,9 @@ public record CatImageSearchResponse(
 		String temperament,
 		String origin
 	) {
+
+		public CatBreed toEntity() {
+			return new CatBreed(name, temperament, origin);
+		}
 	}
 }
