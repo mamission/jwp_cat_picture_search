@@ -1,0 +1,78 @@
+= Cat Picture Search API
+github.com/Kim-Changgyu
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:sectlinks:
+
+== Random50
+
+랜덤한 50개의 고양이 사진 목록입니다.
+
+=== Curl Request
+
+include::{snippets}/getRandom50/curl-request.adoc[]
+
+=== HTTP Request
+
+include::{snippets}/getRandom50/http-request.adoc[]
+
+=== HTTP Response
+
+include::{snippets}/getRandom50/http-response.adoc[]
+
+=== Response Fields
+
+include::{snippets}/getRandom50/response-fields.adoc[]
+
+
+== GetCatImagesByBreedId
+
+Keyword로 검색된 고양이 사진 목록입니다.
+
+=== Curl Request
+
+include::{snippets}/getCatImagesByBreedId/curl-request.adoc[]
+
+=== HTTP Request
+
+include::{snippets}/getCatImagesByBreedId/http-request.adoc[]
+
+=== Query Parameters
+
+include::{snippets}/getCatImagesByBreedId/query-parameters.adoc[]
+
+=== HTTP Response
+
+include::{snippets}/getCatImagesByBreedId/http-response.adoc[]
+
+=== Response Fields
+
+include::{snippets}/getCatImagesByBreedId/response-fields.adoc[]
+
+
+== GetCatImagesByCatImageId
+
+Id로 검색된 고양이 사진 입니다.
+
+=== Curl Request
+
+include::{snippets}/getCatImagesByCatImageId/curl-request.adoc[]
+
+=== HTTP Request
+
+include::{snippets}/getCatImagesByCatImageId/http-request.adoc[]
+
+=== Path Parameters
+
+include::{snippets}/getCatImagesByCatImageId/path-parameters.adoc[]
+
+=== HTTP Response
+
+include::{snippets}/getCatImagesByCatImageId/http-response.adoc[]
+
+=== Response Fields
+
+include::{snippets}/getCatImagesByCatImageId/response-fields.adoc[]
