@@ -25,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class DataCollector implements CommandLineRunner {
+public class DataLoadManager implements CommandLineRunner {
 
 	private final TheCatClient theCatClient;
 

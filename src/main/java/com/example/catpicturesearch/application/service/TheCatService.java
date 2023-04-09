@@ -15,23 +15,21 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class TheCatService {
 
 	private final CatBreedRepository catBreedRepository;
 
-	@Transactional(readOnly = true)
 	public List<CatImageResponse> getRandom50() {
 		List<CatBreed> catBreeds = catBreedRepository.findAllOrderByRandom(50);
 		return TheCatMapper.toCatImageResponses(catBreeds);
 	}
 
-	@Transactional(readOnly = true)
 	public List<CatImageResponse> getCatImagesByBreedId(String breedId) {
 		List<CatBreed> catBreeds = catBreedRepository.findAllByBreedId(breedId);
 		return TheCatMapper.toCatImageResponses(catBreeds);
 	}
 
-	@Transactional(readOnly = true)
 	public CatImageDetailResponse getCatImagesByCatImageId(String catImageId) {
 		CatBreed catBreed = catBreedRepository.findAllByCatImageId(catImageId);
 		return TheCatMapper.toCatImageDetailResponse(catBreed);

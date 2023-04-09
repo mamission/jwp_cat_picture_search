@@ -37,3 +37,6 @@ out/
 
 ### Docker ###
 docker/data/
+
+### Enviroment Variable
+env/
