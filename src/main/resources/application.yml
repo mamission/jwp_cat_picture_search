@@ -1,6 +1,6 @@
 spring:
   config:
-    import: optional:file:spring.env[.properties]
+    import: optional:file:env/spring.env[.properties]
   datasource:
     url: ${DATASOURCE_URL}
     username: ${DATASOURCE_USERNAME}
