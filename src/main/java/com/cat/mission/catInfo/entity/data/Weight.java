@@ -6,10 +6,10 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class Weight {
 
-  @Column(nullable = false)
+  @Column
   private String imperial;
 
-  @Column(nullable = false)
+  @Column
   private String metric;
 
   public Weight(String imperial, String metric) {

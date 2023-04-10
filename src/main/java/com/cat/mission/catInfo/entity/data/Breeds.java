@@ -7,16 +7,16 @@ import jakarta.persistence.Embedded;
 @Embeddable
 public class Breeds {
 
-  @Column(nullable = false)
+  @Column
   private String id;
 
-  @Column(nullable = false)
+  @Column
   private String name;
 
-  @Column(nullable = false)
+  @Column
   private String temperament;
 
-  @Column(nullable = false)
+  @Column
   private String origin;
 
   @Embedded
