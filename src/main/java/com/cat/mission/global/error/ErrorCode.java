@@ -1,4 +1,4 @@
-package com.cat.mission.global;
+package com.cat.mission.global.error;
 
 import org.springframework.http.HttpStatus;
 

@@ -1,7 +1,7 @@
 package com.cat.mission.infra.catApi;
 
 import com.cat.mission.catInfo.repository.CatInfoRepository;
-import com.cat.mission.global.ErrorCode;
+import com.cat.mission.global.error.ErrorCode;
 import com.cat.mission.infra.catApi.dto.CatApiResDto;
 import com.cat.mission.infra.catApi.exception.FailedToLoadApiResException;
 import jakarta.annotation.PostConstruct;
