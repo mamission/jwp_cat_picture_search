@@ -1,10 +1,18 @@
 package com.cat.mission.infra.catApi.exception;
 
-import com.cat.mission.global.ErrorCode;
+import com.cat.mission.global.error.ErrorCode;
+import org.springframework.http.HttpStatus;
 
 public class FailedToLoadApiResException extends RuntimeException {
 
+  private final ErrorCode errorCode;
+
   public FailedToLoadApiResException(ErrorCode errorCode) {
-    super(errorCode.getMessage());
+    this.errorCode = errorCode;
   }
+
+  public HttpStatus getErrorCode() {
+    return errorCode.getHttpStatus();
+  }
+
 }
