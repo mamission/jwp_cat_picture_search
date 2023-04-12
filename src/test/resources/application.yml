@@ -1,0 +1,18 @@
+
+spring:
+  profiles:
+    active: local
+  datasource:
+    url: jdbc:h2:mem:testDB
+    username: sa
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    generate-ddl: true
+    show-sql: true
+    defer-datasource-initialization: true
+
+cat-api:
+  key: ${CAT_API_KEY}
+  url: ${CAT_API_URL}
