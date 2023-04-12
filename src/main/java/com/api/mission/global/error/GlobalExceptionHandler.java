@@ -1,5 +1,6 @@
 package com.api.mission.global.error;
 
+import com.api.mission.cat.exception.CatImageNotFoundException;
 import com.api.mission.infra.catApi.exception.FailedToLoadApiResException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,8 +16,15 @@ public class GlobalExceptionHandler {
   @ExceptionHandler(FailedToLoadApiResException.class)
   public ResponseEntity<ErrorRes> handleBusinessException(FailedToLoadApiResException e) {
     log.info("FailedToLoadApiResException: ", e);
-    return ResponseEntity.status(e.getErrorCode())
-        .body(new ErrorRes(e.getErrorCode(), e.getMessage()));
+    return ResponseEntity.status(e.getHttpStatusCode())
+        .body(new ErrorRes(e.getHttpStatusCode(), e.getMessage()));
+  }
+
+  @ExceptionHandler(CatImageNotFoundException.class)
+  public ResponseEntity<ErrorRes> handleBusinessException(CatImageNotFoundException e) {
+    log.info("CatImageNotFoundException: ", e);
+    return ResponseEntity.status(e.getHttpStatusCode())
+        .body(new ErrorRes(e.getHttpStatusCode(), e.getMessage()));
   }
 
   @ExceptionHandler(RuntimeException.class)
