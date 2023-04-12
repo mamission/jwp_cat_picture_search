@@ -90,4 +90,20 @@ class TheCatControllerTest {
 						))
 				);
 	}
+
+	@Test
+	void testError() throws Exception {
+		mockMvc.perform(get("/cats/search"))
+				.andExpect(status().isInternalServerError())
+				.andExpect(jsonPath("$.code").isNotEmpty())
+				.andExpect(jsonPath("$.message").isNotEmpty())
+				.andDo(print())
+				.andDo(document("error",
+						responseFields(
+								fieldWithPath("code").type(JsonFieldType.STRING).description("에러 코드"),
+								fieldWithPath("message").type(JsonFieldType.STRING).description("에러 상세 내용")
+						))
+				);
+	}
+
 }
