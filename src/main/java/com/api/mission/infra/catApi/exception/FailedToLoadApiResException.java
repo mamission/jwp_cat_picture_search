@@ -11,7 +11,7 @@ public class FailedToLoadApiResException extends RuntimeException {
     this.errorCode = errorCode;
   }
 
-  public HttpStatus getErrorCode() {
+  public HttpStatus getHttpStatusCode() {
     return errorCode.getHttpStatus();
   }
 
