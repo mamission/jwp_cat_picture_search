@@ -90,7 +90,7 @@ class CatServiceTest {
 		PageRequest pageRequest = PageRequest.of(offset, size);
 
 		//when
-		SimpleResponses result = catService.findByKeyword(breedName, pageRequest);
+		SimpleResponses result = catService.findByBreedName(breedName, pageRequest);
 		List<SimpleResponse> data = result.data();
 
 		//then

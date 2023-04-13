@@ -38,9 +38,9 @@ public class CatController {
 	 */
 	@GetMapping(value = "/search", produces = APPLICATION_JSON_VALUE)
 	public SimpleResponses getByKeyword(
-		@RequestParam(value = "q") String keyword,
+		@RequestParam(value = "q") String breedName,
 		Pageable pageable) {
-		return catService.findByKeyword(keyword, pageable);
+		return catService.findByBreedName(breedName, pageable);
 	}
 
 	/**

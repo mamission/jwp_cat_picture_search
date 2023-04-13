@@ -8,6 +8,7 @@ import com.prgrms.thecatapi.cat.Breed;
 import com.prgrms.thecatapi.cat.Photo;
 import com.prgrms.thecatapi.cat.PhotoBreed;
 import com.prgrms.thecatapi.cat.Weight;
+import com.prgrms.thecatapi.common.dto.DetailResponse;
 import com.prgrms.thecatapi.common.external.dto.BreedDto;
 import com.prgrms.thecatapi.common.dto.BreedResponse;
 import com.prgrms.thecatapi.common.external.dto.DetailDto;
@@ -55,4 +56,11 @@ public class DataConverter {
 			.toList();
 	}
 
+	public DetailResponse toDetailResponse(DetailDto detailDto) {
+		Photo photo = this.toPhoto(detailDto);
+		List<Breed> breeds = this.toBreeds(detailDto);
+
+		List<BreedResponse> breedResponses = this.toBreedResponse(breeds);
+		return new DetailResponse(photo, breedResponses);
+	}
 }

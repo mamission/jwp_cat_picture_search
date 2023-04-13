@@ -32,24 +32,28 @@ public class CatService {
 	private final PhotoBreedRepository photoBreedRepository;
 	private final CatApiClient catApiClient;
 	private final DataConverter converter;
+	private static final int ZERO = 0;
 
+	@Transactional
 	public DetailResponse findById(String photoId) {
 
-		if (photoBreedRepository.getCountByPhoto(photoId) > 0) {
+		if (photoBreedRepository.getCountByPhoto(photoId) > ZERO) {
 			return findDetailResponseFromRepository(photoId);
 		}
 
 		DetailDto detailDto = catApiClient.getById(photoId);
 
+		savePhotoBreed(detailDto);
+
+		return converter.toDetailResponse(detailDto);
+	}
+
+	private void savePhotoBreed(DetailDto detailDto) {
 		Photo photo = converter.toPhoto(detailDto);
 		List<Breed> breeds = converter.toBreeds(detailDto);
 		List<PhotoBreed> photoBreeds = converter.toPhotoBreeds(photo, breeds);
 
 		photoBreedRepository.saveAll(photoBreeds);
-
-		List<BreedResponse> breedResponses = converter.toBreedResponse(breeds);
-
-		return new DetailResponse(photo, breedResponses);
 	}
 
 	public SimpleResponses findRandom50Photo(Pageable pageable) {
@@ -58,18 +62,16 @@ public class CatService {
 		return new SimpleResponses(random50Photos);
 	}
 
-	public SimpleResponses findByKeyword(String keyword, Pageable pageable) {
-		List<SimpleResponse> result = photoRepository.findByKeyword(keyword, pageable);
+	public SimpleResponses findByBreedName(String breedName, Pageable pageable) {
+		List<SimpleResponse> result = photoRepository.findByKeyword(breedName, pageable);
 
 		if (!result.isEmpty()) {
 			return new SimpleResponses(result);
 		}
 
-		List<PhotoDto> photoDtoList = catApiClient.getByBreedName(keyword, pageable.getPageSize());
+		List<PhotoDto> photoDtoList = catApiClient.getByBreedName(breedName, pageable.getPageSize());
 
-		List<SimpleResponse> simpleResponses = converter.toSimpleResponses(keyword, photoDtoList);
-
-		return new SimpleResponses(simpleResponses);
+		return new SimpleResponses(converter.toSimpleResponses(breedName, photoDtoList));
 	}
 
 	private DetailResponse findDetailResponseFromRepository(String photoId) {

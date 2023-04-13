@@ -40,13 +40,9 @@ public class DataUploader implements CommandLineRunner {
 		log.info("데이터 저장 성공.");
 	}
 
-	protected void insertData() {
+	private void insertData() {
 		List<PhotoDto> data = getRandomData();
 
-		saveData(data);
-	}
-
-	public void saveData(List<PhotoDto> data) {
 		for (PhotoDto photoDto : data) {
 			Photo photo = new Photo(photoDto.id(), photoDto.url(), photoDto.width(), photoDto.height());
 
@@ -57,7 +53,7 @@ public class DataUploader implements CommandLineRunner {
 		entityManager.clear();
 	}
 
-	protected List<PhotoDto> getRandomData() {
+	private List<PhotoDto> getRandomData() {
 		return catApiClient.getRandomImage(limit);
 	}
 }
