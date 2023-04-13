@@ -1,6 +1,4 @@
-
 = 고양이 사진 검색사이트 API Document
-
 :doctype: book
 :icons: font
 :source-highlighter: highlightjs

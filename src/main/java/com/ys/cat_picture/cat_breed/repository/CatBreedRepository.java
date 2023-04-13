@@ -11,7 +11,7 @@ import com.ys.cat_picture.cat_breed.domain.CatBreed;
 public interface CatBreedRepository extends JpaRepository<CatBreed, String> {
 
 	@Query(value = "select exists (select 1 from CatBreed c)")
-	boolean existsData();
+	Boolean existsData();
 
 	Optional<CatBreed> findByExternalId(@Param("externalId")String externalId);
 
