@@ -1,7 +1,6 @@
 package com.ys.cat_picture.cat_breed.domain;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,13 +24,11 @@ public class CatBreed {
 	@Column(unique = true)
 	private String externalId;
 
-	@Column(name = "name", unique = true)
+	@Column(unique = true)
 	private String name;
 
-	@Column(name = "temperament")
 	private String temperament;
 
-	@Column(name = "origin")
 	private String origin;
 
 	@Builder

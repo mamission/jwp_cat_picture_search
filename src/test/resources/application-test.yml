@@ -14,5 +14,6 @@ spring:
       hibernate.format_sql: true
       dialect: org.hibernate.dialect.MySQL8Dialect
       database: mysql
+      hibernate.physical_naming_strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
 
 
