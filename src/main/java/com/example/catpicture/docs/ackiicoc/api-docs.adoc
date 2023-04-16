@@ -1,0 +1,16 @@
+= Cat Picture API Docs
+:toc: left
+:toclevels: 2
+:sectlinks:
+
+== 랜덤으로 50개 조회
+
+operation::get-50-random-pictures[snippets='http-request,http-response,response-fields']
+
+== 품종으로 조회
+
+operation::get-pictures-by-name[snippets='http-request,http-response,response-fields']
+
+== id 로 조회
+
+operation::get-picture-by-id[snippets='http-request,http-response,response-fields']
