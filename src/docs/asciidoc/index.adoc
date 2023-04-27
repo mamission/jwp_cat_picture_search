@@ -1,0 +1,44 @@
+ifndef::snippets[]
+:snippets: ./build/generated-snippets
+endif::[]
+= 고양이 사진 검색
+:toc: left
+:toclevels: 2
+:sectlinks:
+:source-highlighter: highlightjs
+
+== 50개 사진 랜덤 검색
+
+=== HTTP request
+include::{snippets}/get-random-50-picture/http-request.adoc[]
+
+=== HTTP response
+include::{snippets}/get-random-50-picture/http-response.adoc[]
+
+=== response body
+include::{snippets}/get-random-50-picture/response-body.adoc[]
+
+== 품종별 검색
+
+=== HTTP request
+include::{snippets}/get-picture-by-breed/http-request.adoc[]
+
+=== HTTP response
+include::{snippets}/get-picture-by-breed/http-response.adoc[]
+
+=== response body
+include::{snippets}/get-picture-by-breed/response-body.adoc[]
+
+== ID로 검색
+
+=== HTTP request
+include::{snippets}/get-picture-by-id/http-request.adoc[]
+
+=== path param
+include::{snippets}/get-picture-by-id/path-parameters.adoc[]
+
+=== HTTP response
+include::{snippets}/get-picture-by-id/http-response.adoc[]
+
+=== response body
+include::{snippets}/get-picture-by-id/response-body.adoc[]

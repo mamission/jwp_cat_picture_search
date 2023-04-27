@@ -1,0 +1,13 @@
+version: "3.0"
+
+services:
+  db: # 서비스 명
+    image: mysql:latest # 사용할 이미지
+    volumes:
+      - ./db_data:/var/lib/mysql
+    restart: always
+    container_name: youngji-workspace
+    environment:
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: cat-search
