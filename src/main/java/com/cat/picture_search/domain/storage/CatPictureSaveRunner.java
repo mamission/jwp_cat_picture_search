@@ -1,13 +1,12 @@
 package com.cat.picture_search.domain.storage;
 
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Component;
-
 import com.cat.picture_search.domain.storage.service.CatPictureSaveService;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 @Profile("!test")
-@Component
+@Configuration
 public class CatPictureSaveRunner implements CommandLineRunner {
 
 	private final CatPictureSaveService catPictureSaveService;
