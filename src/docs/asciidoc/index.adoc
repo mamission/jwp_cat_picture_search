@@ -1,0 +1,55 @@
+=  CAT 사진 검색 API 명세 🐱
+
+== 50개의 랜덤 이미지 가져오기 🖼️
+
+=== Request URL
+
+include::{snippets}/get-random-50-pictures/http-request.adoc[]
+
+=== Response
+
+include::{snippets}/get-random-50-pictures/http-response.adoc[]
+
+==== Response Fields
+
+include::{snippets}/get-random-50-pictures/response-fields.adoc[]
+
+== 품종 키워드로 이미지 검색하기 🔍
+
+=== Request URL
+
+include::{snippets}/search-pictures-by-keyword/http-request.adoc[]
+
+==== Request Parameter
+
+include::{snippets}/search-pictures-by-keyword/query-parameters.adoc[]
+
+=== Response
+
+include::{snippets}/search-pictures-by-keyword/http-response.adoc[]
+
+==== Response Fields
+
+include::{snippets}/search-pictures-by-keyword/response-fields.adoc[]
+
+== 하나의 이미지 정보 조회하기 📍
+
+=== Request URL
+
+include::{snippets}/get-one-picture/http-request.adoc[]
+
+==== Request Path Variable
+
+include::{snippets}/get-one-picture/path-parameters.adoc[]
+
+=== Response
+
+include::{snippets}/get-one-picture/http-response.adoc[]
+
+==== Response Body
+
+include::{snippets}/get-one-picture/response-body.adoc[]
+
+==== Response Fields
+
+include::{snippets}/get-one-picture/response-fields.adoc[]
