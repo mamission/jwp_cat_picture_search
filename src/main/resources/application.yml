@@ -1,0 +1,23 @@
+cat:
+  openapi:
+    key: ${api.key}
+    url: https://api.thecatapi.com/v1/images
+logging:
+  level:
+    com.cat.picture_search.global.catApi: DEBUG
+
+spring:
+  config:
+    import: application_secrets.yml
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cat
+    username: ${db.username}
+    password: ${db.password}
+
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
