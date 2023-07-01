@@ -1,0 +1,54 @@
+= Cat API DOCS
+
+== Cat
+
+=== getRandom50Images
+
+==== HTTP request
+
+include::{snippets}/get-random50Images/http-request.adoc[]
+
+==== HTTP response
+
+include::{snippets}/get-random50Images/http-response.adoc[]
+
+==== response fields
+
+include::{snippets}/get-random50Images/response-fields.adoc[]
+
+=== getImagesByBreed
+
+==== HTTP request
+
+include::{snippets}/get-imagesByBreed/http-request.adoc[]
+
+==== Path Parameters
+
+include::{snippets}/get-imagesByBreed/path-parameters.adoc[]
+
+==== HTTP response
+
+include::{snippets}/get-imagesByBreed/http-response.adoc[]
+
+==== response fields
+
+include::{snippets}/get-random50Images/response-fields.adoc[]
+
+=== getImageById
+
+==== HTTP request
+
+include::{snippets}/get-imageById/http-request.adoc[]
+
+==== query Parameters
+
+include::{snippets}/get-imageById/query-parameters.adoc[]
+
+==== HTTP response
+
+include::{snippets}/get-imageById/http-response.adoc[]
+
+==== response fields
+
+include::{snippets}/get-imageById/response-fields.adoc[]
+
